@@ -1,0 +1,49 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap');
+
+* {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+}
+
+div {
+    width: 100%;
+}
+
+.handwritten {
+    font-family: 'Nothing You Could Do';
+}
+
+//Colormode dependent styles
+.darkmode{
+    .neumorph{
+        box-shadow: -4px -4px 10px rgba(255,255,255,0.15), 4px 4px 10px rgba(0,0,0,0.6); //dark
+    
+        &__button{
+            box-shadow: -4px -4px 10px rgba(255,255,255,0.15), 4px 4px 10px rgba(0,0,0,0.6); //dark
+    
+            &:active, &.active{            
+                box-shadow: inset -4px -4px 3px rgba(255,255,255,0.2), inset 4px 4px 8px rgba(0,0,0,0.6); //dark
+            }
+        }
+    }
+    .neumorphdown{
+        box-shadow: inset -4px -4px 8px rgba(255,255,255,0.2), inset 4px 4px 8px rgba(0,0,0,0.2); //dark
+    }
+}
+
+.lightmode{
+    .neumorph{
+        box-shadow: -4px -4px 10px rgba(255,255,255,1), 4px 4px 8px rgba(0,0,0,0.15); //light
+    
+        &__button{
+            box-shadow: -4px -4px 10px rgba(255,255,255,1), 4px 4px 10px rgba(0,0,0,0.15); //light
+
+            &:active, &.active{            
+                box-shadow: inset -4px -4px 3px rgba(255,255,255,1), inset 4px 4px 8px rgba(0,0,0,0.15); //light
+            }
+        }
+    }
+    .neumorphdown{
+        box-shadow: inset -4px -4px 8px rgba(255,255,255,1), inset 4px 4px 8px rgba(0,0,0,0.15); //light
+    }
+}

@@ -1,0 +1,13 @@
+// @import 'mixins';
+
+$color-primary: #137EF4;
+$color-secondary: #FFB800;
+$color-tertiary: #00AB47;
+$color-quaternary: #EE2C29;
+
+:export {
+    colorPrimary: $color-primary;
+    colorSecondary: $color-secondary;
+    colorTertiary: $color-tertiary;
+    colorQuaternary: $color-quaternary;
+}
