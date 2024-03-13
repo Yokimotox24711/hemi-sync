@@ -8,15 +8,14 @@ This is an information techology lab with an eye on cybernetics
   - Back-Tier
  
 -  Business Structure
-  - Partners
-  - Activities
-  - Resources
-  - Value Proposition
-  - Channels
-  - Customer Relations
-  - Revenue Stream
-  - Cost Structure
-
+    - Partners
+    - Activities
+    - Resources
+    - Value Proposition
+    - Channels
+    - Customer Relations
+    - Revenue Stream
+    - Cost Structure
 
 ## Micro Services
 the action of helping or doing work for someone.
