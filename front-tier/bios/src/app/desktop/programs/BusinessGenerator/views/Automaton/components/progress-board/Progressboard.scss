@@ -1,0 +1,46 @@
+.tab--progress-board {
+    .tab--body {
+        .col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+
+            .business-area {
+                flex: 1;
+                overflow: hidden;
+
+                h2 {
+                    margin-bottom: 8px;
+                }
+
+            }
+
+        }
+    }
+
+    .tab--footer {
+        .progressbar--main {
+            width: 100%;
+
+            div[class^="ProgressBar__WhiteBar"], div[class^="ProgressBar__Progress"] {
+                width: 100%;
+            }
+            
+            div[class^="ProgressBar__Progress"]{
+                color: unset;
+            }
+        }
+    }
+
+    >* {}
+
+    .table-wrapper {
+        background-color: white;
+        height: 100%;
+    }
+
+    table {
+        width: 100%;
+    }
+}

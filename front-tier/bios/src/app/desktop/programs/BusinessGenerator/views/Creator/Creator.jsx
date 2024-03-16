@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./creator.scss";
+import { useSession } from 'next-auth/react';
 
 export default function Creator() {
+    
+    // Populate Data
     const businessTypes = {
         technologyServices: [
             "Software Development Firm",
@@ -75,13 +78,40 @@ export default function Creator() {
         ]
     };
 
+    // Capture Data
+    const [name, setName] = useState("")
+    const [businessType, setBusinessType] = useState("")
+    
+    // Generate Business
+    const { data: session } = useSession();
+    const generateBusiness = async () => {
+
+        // Validate Input
+        if (!name && !businessType) return;
+
+        // Prepare Company Object
+        if (!session) return;
+        const company = {
+            uuid: uuidv4(),
+            name: name,
+            createdAt: serverTimestamp(),
+            user: {
+                _id: session?.user.email,
+                name: session?.user.name,
+                avatar:
+                    session?.user.image ||
+                    `https://ui-avatars.com/api/?name=${session?.user?.name}`,
+            },
+        };
+    }
+
     return (
         <>
             <div className="page page--creator">
                 <div className="page--body">
                     <div className="mb-2 field-row">
                         <label for="text17">Business Name</label>
-                        <input id="text17" type="text" />
+                        <input id="text17" type="text" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
                     <div className="row">
                         <div className="col flex" id="section--business-type">
@@ -127,7 +157,7 @@ export default function Creator() {
                     </div>
                 </div>
                 <div className="page--footer">
-                    <button>Generate Business Plan</button>
+                    <button onClick={generateBusiness}>Generate Business</button>
                 </div>
             </div>
         </>

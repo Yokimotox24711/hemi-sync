@@ -1,0 +1,53 @@
+.page-blocker{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    // background-color: green; 
+    width: 100%;
+    height: 100%;
+    transform: scale(10);
+    display: none;
+
+    &.active{
+        display: block;
+    }
+}
+
+.menu--top{
+    position: relative;
+
+    .list--dropdown{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+        z-index: 100;
+        display: none;
+        flex-direction: column;
+        transition: all 0.3s ease;
+        opacity: 0;
+        pointer-events: none;
+        // transform: translateY(-10px);
+    
+        button{
+            padding: 10px 40px;
+
+            &:hover{
+                background-color: rgb(46, 230, 230);
+                cursor: pointer;
+            }
+        }
+    }
+
+    &.open{
+        .list--dropdown{
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+    }
+
+
+}

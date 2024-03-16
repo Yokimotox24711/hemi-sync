@@ -1,0 +1,24 @@
+.page{
+    &--business-roster{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .business-list-wrapper{
+        overflow: hidden;
+        height: 100%;
+        flex: 1;
+        padding: 20px;
+
+        button{
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 10px;
+            
+            h2{
+                font-size: 2em;
+            }
+        }
+    }
+}

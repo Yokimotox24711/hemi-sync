@@ -1,0 +1,74 @@
+.page--login{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    padding: 80px;
+
+    // .icon-gstar{
+    //     position: absolute;
+    //     top: 40px;
+    //     right: 80px;
+    //     width: 120px;
+    //     height: 120px;
+    //     object-fit: contain;
+    // }
+
+    h1{
+        color: white;
+        font-size: 1em;
+        opacity: 0.5;
+        font-weight: 100;
+        font-family: monospace, 'Courier New', Courier ;
+        margin-bottom: 20px;
+    }
+
+    .main-image{
+        width: 120%;
+        max-width: 600px;
+        margin-bottom: 20px;
+    }
+
+    .login-wrapper{
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+
+        .btn--sign-in{
+            border: solid 1px white;
+            background: unset;
+            padding: 10px 32px;
+            min-width: 200px;
+            font-size: 1em;
+            font-family: monospace, 'Courier New', Courier ;
+            width: fit-content;
+            text-align: center;
+        }
+    }
+
+    .icons-wrapper{
+        list-style: none;
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 70%;
+        max-width: 700px;
+        margin-top: 80px;
+
+        .col{
+            display: flex;
+            justify-content: center;
+        }
+
+        img{
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin: 0 auto;
+        }
+    }
+}
