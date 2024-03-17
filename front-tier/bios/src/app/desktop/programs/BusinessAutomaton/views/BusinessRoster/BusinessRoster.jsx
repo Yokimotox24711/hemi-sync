@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 import React, { useState } from 'react'
 import "./BusinessRoster.scss";
 import { Frame } from '@react95/core';

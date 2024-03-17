@@ -2,8 +2,17 @@
 import React from 'react'
 import { List } from '@react95/core'
 import { FolderExe2, FolderExe, MicrosoftExchange, MsDos, MicrosoftNetwork, WindowsExplorer, FolderFile, Settings, FolderSettings, FolderPrint, FileFind, HelpBook, LoaderBat, Computer3 } from '@react95/icons';
+import { useRouter } from 'next/navigation';
 
 export default function Startmenu() {
+
+    const router = useRouter();
+
+    // Next Auth Log Out
+    const logOut = async () => {
+        router.push('/api/auth/signout')
+    }
+
     return (
         <>
             <List>
@@ -44,7 +53,7 @@ export default function Startmenu() {
                 <List.Item icon={<HelpBook variant="32x32_4" />}>Help</List.Item>
                 <List.Item icon={<LoaderBat variant="32x32_4" />}>Run...</List.Item>
                 <List.Divider />
-                <List.Item icon={<Computer3 variant="32x32_4" />}>Shut Down...</List.Item>
+                <List.Item icon={<Computer3 variant="32x32_4" />} onClick={logOut}>Shut Down...</List.Item>
             </List>
         </>
     )

@@ -10,6 +10,7 @@
       "@/styles/*": ["styles/*"],
       "@/components/*": ["components/*"],
       "@/lib/*": ["lib/*"],
+      "@/api/*": ["api/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,

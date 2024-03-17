@@ -1,15 +1,15 @@
 "use client"
 import React from 'react'
-import BusinessGenerator from './programs/BusinessGenerator/BusinessGenerator'
+import BusinessAutomaton from './programs/BusinessAutomaton/BusinessAutomaton'
 import "./style.scss";
 
 function DesktopPage() {
     return (
         <>
             <div className="desktop">
-                <BusinessGenerator></BusinessGenerator>
+                <BusinessAutomaton></BusinessAutomaton>
             </div>
-            <div className="taskbar"></div>
+            {/* <div className="taskbar"></div> */}
         </>
     )
 }
