@@ -3,9 +3,44 @@ import "./progressboard.scss";
 import { ProgressBar, Tab, Tabs } from '@react95/core';
 import { width } from 'styled-system';
 
-export default function ProgressBoard() {
+export default function ProgressBoard(activeBusiness) {
 
     const [progress, setProgress] = useState(0);
+
+
+    const [journey, setJourney] = useState({
+
+        journeyHistory: [],
+        journeyQueue: [
+            {
+                name: "Stage 1",
+                description: ``,
+                completion: {
+                    numerator: 0,
+                    denominator: 200,
+                },
+                actions: [
+                    {
+                        title: "Microsoft",
+                        section: "partner",
+                        type: "create",
+                        description: "Partnering up with Microsoft",
+                        time_in_hours: 0.5
+                    },
+                    {
+                        title: "Create Virtual Network",
+                        section: "activity",
+                        type: "create",
+                        description: "Create a virtual network",
+                        time_in_hours: 0.5
+                    },
+
+                ]
+            }
+        ]
+    }
+
+    )
 
     var partners = [
         {
@@ -197,18 +232,22 @@ export default function ProgressBoard() {
         setTimeout(() => {
             setProgress(progress + 1);
         }, 1000);
-    });
+    }, []);
+
+    const addItem = () => {
+        console.log("Add item");
+    }
 
     return (
         <>
             <div className="tab tab--progress-board">
                 <div className="tab--body">
-                    <div className="row">
+                    <div className="row" style={{ flex: 4 }}>
                         <div className="col">
                             <div className="business-area partners">
                                 <h2>Partners</h2>
                                 <div className='table-wrapper'>
-                                    <table class="interactive">
+                                    <table className="interactive">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -230,7 +269,7 @@ export default function ProgressBoard() {
                             <div className="business-area activities">
                                 <h2>Activities</h2>
                                 <div className='table-wrapper'>
-                                    <table class="interactive">
+                                    <table className="interactive">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -247,10 +286,10 @@ export default function ProgressBoard() {
                                     </table>
                                 </div>
                             </div>
-                            <div className="business-area resources">
+                            <div className="business-area resources mt-2">
                                 <h2>Resources</h2>
                                 <div className='table-wrapper'>
-                                    <table class="interactive">
+                                    <table className="interactive">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -258,8 +297,8 @@ export default function ProgressBoard() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {resources.map(resource => (
-                                                <tr>
+                                            {resources.map((resource, idx) => (
+                                                <tr key={`resource-${idx}`}>
                                                     <td>{resource.name}</td>
                                                     <td>{resource.type}</td>
                                                 </tr>
@@ -273,7 +312,7 @@ export default function ProgressBoard() {
                             <div className="business-area value-proposition">
                                 <h2>Value Proposition</h2>
                                 <div className='table-wrapper'>
-                                    <table class="interactive">
+                                    <table className="interactive">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -296,7 +335,7 @@ export default function ProgressBoard() {
                             <div className="business-area customer-relations">
                                 <h2>Customer Relations</h2>
                                 <div className='table-wrapper'>
-                                    <table class="interactive">
+                                    <table className="interactive">
                                         <thead>
                                             <tr>
                                                 <th>Activity</th>
@@ -312,10 +351,10 @@ export default function ProgressBoard() {
                                     </table>
                                 </div>
                             </div>
-                            <div className="business-area channels">
+                            <div className="business-area channels mt-2">
                                 <h2>Channels</h2>
                                 <div className='table-wrapper'>
-                                    <table class="interactive">
+                                    <table className="interactive">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -338,7 +377,7 @@ export default function ProgressBoard() {
                             <div className="business-area customers">
                                 <h2>Customers</h2>
                                 <div className='table-wrapper'>
-                                    <table class="interactive">
+                                    <table className="interactive">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -358,9 +397,53 @@ export default function ProgressBoard() {
                             </div>
                         </div>
                     </div>
+                    <div className="row mt-2" style={{ flex: 1 }}>
+                        <div className="col">
+                            <div className="business-area cost-structure">
+                                <h2>Cost Structure</h2>
+                                <div className='table-wrapper'>
+                                    <table className="interactive">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {partners.map(partner => (
+                                                <tr>
+                                                    <td>{partner.name}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="business-area cost-structure">
+                                <h2>Revenue Stream</h2>
+                                <div className='table-wrapper'>
+                                    <table className="interactive">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {partners.map(partner => (
+                                                <tr>
+                                                    <td>{partner.name}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="tab--footer">
-                    <h2 class="mb-2">Creating a Wordpress Application</h2>
+                    <h2 className="mb-2">Creating a Wordpress Application</h2>
                     <ProgressBar className="progressbar--main" percent={progress} />
                 </div>
             </div>

@@ -9,8 +9,6 @@ import Nav from './components/Nav';
 
 export default function BusinessAutomaton({ children }) {
 
-    console.log("BusinessAutomaton is running")
-
     const [activeView, setActiveView] = useState('business-roster')
     const [activeBusiness, setActiveBusiness] = useState('business-roster')
     

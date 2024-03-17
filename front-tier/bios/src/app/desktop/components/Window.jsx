@@ -6,7 +6,7 @@ export default function Window({children, ...props}) {
 
     return (
         <>
-            <div className="window" style={{ width: "1200px", height: "680px" }}>
+            <div className="window" style={{ width: "100%", height: "100%" }}>
                 <div className="window-content">
                     <div className="title-bar">
                         <div className="title-bar-text">{title}</div>

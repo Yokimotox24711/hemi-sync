@@ -11,7 +11,7 @@ export default function Nav({setActiveView}) {
 
     return (
         <>
-            <div class={`page-blocker ${menuOpen && "active"}`} onClick={() => setMenuOpen(false)}></div>
+            <div className={`page-blocker ${menuOpen && "active"}`} onClick={() => setMenuOpen(false)}></div>
             <div className='nav-wrapper'>
                 <nav className={`menu--top mb-2 ${menuOpen && "open"}`}>
                     <div className="main-buttons">

@@ -4,17 +4,22 @@ import { useSession } from "next-auth/react";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { uuidv4 } from "@firebase/util";
 import { firestoreDB } from "@/lib/firebase";
-// import { CreateCompany } from '@/app/api/business-automaton/controllers/creator/CreatorController';
+import Business from "@/lib/mongodb/models/business";
+import { useRouter } from "next/navigation";
+// import { CreateBusiness } from '@/app/api/business-automaton/controllers/creator/CreatorController';
 
 const Creator = () => {
+  var router = useRouter();
+
+  // ++++++++++++++++++++++
   // Populate Data
-  const companyTypes = {
+  const businessTypes = {
     technologyServices: [
       "Software Development Firm",
       "IT Consulting Agency",
       "Cybersecurity Solutions Provider",
       "Web Hosting Service",
-      "Mobile App Development Company",
+      "Mobile App Development Business",
     ],
     retail: [
       "Clothing Boutique",
@@ -53,7 +58,7 @@ const Creator = () => {
     ],
     realEstate: [
       "Real Estate Agency",
-      "Property Management Company",
+      "Property Management Business",
       "Real Estate Development Firm",
       "Vacation Rental Management Service",
       "Commercial Leasing Agency",
@@ -66,10 +71,10 @@ const Creator = () => {
       "Test Preparation Service",
     ],
     entertainmentAndMedia: [
-      "Film Production Company",
+      "Film Production Business",
       "Music Recording Studio",
       "Online Streaming Service",
-      "Event Management Company",
+      "Event Management Business",
       "Advertising Agency",
     ],
     professionalServices: [
@@ -81,82 +86,83 @@ const Creator = () => {
     ],
   };
 
+  // ++++++++++++++++++++++
   // Capture Data
-  const [companyName, setCompanyName] = useState("");
-  const [companyType, setCompanyType] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [businessType, setBusinessType] = useState("");
 
-  const [company, setCompany] = useState();
+  const [business, setBusiness] = useState();
 
+  // ++++++++++++++++++++++
   // UI/UX
   const [openAlert, setOpenAlert] = useState(false);
   const [loadingResponse, setLoadingResponse] = useState(false);
 
-  // Create Company
-  const { data: session } = useSession();
-  const CreateCompany = async () => {
-    // Get Current User
+  // Function to handle changes in input fields
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    setBusiness((prevBusiness) => ({
+      ...prevBusiness,
+      [name]: value,
+    }));
+  };
 
-    // Validate Input
-    if (!companyName && !companyType) return;
-
-    // Prepare Company Object
-    if (!session) return;
-    const company: Company = {
-      name: companyName,
-      type: companyType,
-      uuid: uuidv4(),
-      createdAt: serverTimestamp().toString(),
-      info: {
-        description: "",
-        logo: "",
-        website: "",
-        industry: "",
-        founded: 0,
-        headquarters: "",
-        mission: "",
-        vision: "",
-        values: [],
-      },
-      owner: {
-        _id: session?.user.email,
-        name: session?.user.name,
-        avatar:
-          session?.user.image ||
-          `https://ui-avatars.com/api/?name=${session?.user?.name}`,
-      },
+    // Function to handle changes in nested input fields
+    const handleInputNestedChange = (e) => {
+      const { name, value } = e.target;
+      console.log(name, value);
+      const [parentKey, childKey] = name.split('.');
+      console.log(parentKey, childKey);
+      setBusiness(prevBusiness => ({
+        ...prevBusiness,
+        [parentKey]: {
+          ...prevBusiness[parentKey],
+          [childKey]: value
+        }
+      }));
     };
 
-    // Save To Firestore
-    var docRef = await setDoc(
-      doc(
-        firestoreDB,
-        "users",
-        session?.user?.email,
-        "business automaton",
-        company.name
-      ),
-      company
-    );
-    setOpenAlert(true);
+  // ++++++++++++++++++++++
+  // CRUD Business
+  const { data: session } = useSession();
 
-    // Get AI Populated Business Model Base Components
-    setLoadingResponse(true); //Toast notifciation
-    await fetch("/api/business-automaton/creator/", {
+  const GenerateBusiness = async () => {
+    // AI Random Generate Business
+    const res = await fetch(
+      "/api/program/business-automaton/business/generate",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          businessName: businessName,
+          businessType: businessType,
+          session: session,
+        }),
+      }
+    );
+    var business = await res.json();
+
+    // Populate Additional Metadata
+    business["uuid"] = uuidv4();
+    business["owner"] = {
+      _id: session?.user.email,
+      name: session?.user.name,
+      avatar:
+        session?.user.image ||
+        `https://ui-avatars.com/api/?name=${session?.user?.name}`,
+    };
+
+    setBusiness(business);
+  };
+
+  const SaveBusiness = async () => {
+    const res = await fetch("/api/program/business-automaton/business", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify({
-        company,
-        session
+        business: business,
       }),
-    })
-    .then((res) => {
-      setLoadingResponse(false);
-    })
-    .catch((err) => {
-      console.log(err);
     });
+    var data = await res.json();
   };
 
   return (
@@ -168,28 +174,33 @@ const Creator = () => {
             <input
               id="text17"
               type="text"
-              value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
+              value={businessName}
+              onChange={(e) => setBusinessName(e.target.value)}
             />
           </div>
           <div className="row">
             <div className="col flex" id="section--business-type">
               <fieldset>
                 <legend>Select Business Type</legend>
-                {Object.entries(companyTypes).map(([category, types], idx) => (
+                {Object.entries(businessTypes).map(([category, types], idx) => (
                   <>
-                    {types.map((companyType, typeIdx) => (
-                      <div key={`business-type--${idx}`} className="field-row">
+                    {types.map((businessType, typeIdx) => (
+                      <div
+                        key={`business-type--${idx}-${typeIdx}`}
+                        className="field-row"
+                      >
                         <div key={typeIdx}>
                           <input
                             id={`radio-business-type--${idx}-${typeIdx}`}
                             type="radio"
                             name={`business-type`}
+                            value={businessType}
+                            onChange={(e) => setBusinessType(e.target.value)}
                           />
                           <label
                             htmlFor={`radio-business-type--${idx}-${typeIdx}`}
                           >
-                            {companyType}
+                            {businessType}
                           </label>
                         </div>
                       </div>
@@ -199,26 +210,67 @@ const Creator = () => {
               </fieldset>
             </div>
             <div className="col flex">
-              <fieldset>
-                <legend>Business Location</legend>
-                <div className="field-row">
-                  <label htmlFor="text18">City</label>
-                  <input id="text18" type="text" />
-                </div>
-                <div className="field-row">
-                  <label htmlFor="text19">State</label>
-                  <input id="text19" type="text" />
-                </div>
-                <div className="field-row">
-                  <label htmlFor="text20">Country</label>
-                  <input id="text20" type="text" />
-                </div>
+              <fieldset className="business-info__wrapper">
+                <legend>Business Info</legend>
+                {
+                  // @ts-ignore
+                  business &&
+                    Object.keys(business).map(
+                      (key, idx) =>
+                        key !== "uuid" &&
+                        (key === "info" || key == "owner" ? (
+                          <>
+                            <fieldset key={`business-prop--${idx}`}>
+                              <legend>{key}</legend>
+                              {Object.keys(business[key]).map((key2, id) => (
+                                <div
+                                  key={`business-prop--${idx}-${id}`}
+                                  className="field-row"
+                                >
+                                  <label
+                                    htmlFor={`business-prop--${idx}-${id}`}
+                                  >
+                                    {key2}
+                                  </label>
+                                  <input
+                                    id={`business-prop--${idx}-${id}`}
+                                    type="text"
+                                    name={`${key}.${key2}`}
+                                    value={business[key][key2]}
+                                    onChange={handleInputNestedChange}
+                                  />
+                                </div>
+                              ))}
+                            </fieldset>
+                          </>
+                        ) : (
+                          <div
+                            key={`business-prop--${idx}`}
+                            className="field-row"
+                          >
+                            <label htmlFor={`business-prop--${idx}`}>
+                              {key}
+                            </label>
+                            <input
+                              id={`business-prop--${idx}`}
+                              type="text"
+                              name={`${key}`}
+                              value={business[key]}
+                              onChange={handleInputChange}
+                            />
+                          </div>
+                        ))
+                    )
+                }
               </fieldset>
             </div>
           </div>
         </div>
         <div className="page--footer">
-          <button onClick={() => CreateCompany()}>Generate Business</button>
+          <button onClick={() => GenerateBusiness()}>Generate Business</button>
+          <button disabled={!business} onClick={() => SaveBusiness()}>
+            Save Business
+          </button>
         </div>
       </div>
     </>
