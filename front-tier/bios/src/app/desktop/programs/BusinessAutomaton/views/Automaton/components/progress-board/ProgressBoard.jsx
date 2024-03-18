@@ -2,11 +2,9 @@ import React, { use, useEffect, useState } from 'react'
 import "./progressboard.scss";
 import { ProgressBar, Tab, Tabs } from '@react95/core';
 import { width } from 'styled-system';
+import CustomProgressBar from '../../../../components/CustomProgressBar';
 
 export default function ProgressBoard(activeBusiness) {
-
-    const [progress, setProgress] = useState(0);
-
 
     const [journey, setJourney] = useState({
 
@@ -210,7 +208,7 @@ export default function ProgressBoard(activeBusiness) {
         }
     ]
 
-    var customer_relations = [
+    var customerRelations = [
         {
             activity: "Helpdesk Call"
         },
@@ -228,12 +226,6 @@ export default function ProgressBoard(activeBusiness) {
         }
     ]
 
-    useEffect(() => {
-        setTimeout(() => {
-            setProgress(progress + 1);
-        }, 1000);
-    }, []);
-
     const addItem = () => {
         console.log("Add item");
     }
@@ -247,20 +239,22 @@ export default function ProgressBoard(activeBusiness) {
                             <div className="business-area partners">
                                 <h2>Partners</h2>
                                 <div className='table-wrapper'>
-                                    <table className="interactive">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {partners.map(partner => (
+                                    {(partners && partners.length) === 0 && (
+                                        <table className="interactive">
+                                            <thead>
                                                 <tr>
-                                                    <td>{partner.name}</td>
+                                                    <th>Name</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {partners.map(partner => (
+                                                    <tr>
+                                                        <td>{partner.name}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -269,42 +263,52 @@ export default function ProgressBoard(activeBusiness) {
                             <div className="business-area activities">
                                 <h2>Activities</h2>
                                 <div className='table-wrapper'>
-                                    <table className="interactive">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {/* Loop over List */}
-                                            {activities.map(activity => (
-                                                <tr>
-                                                    <td>{activity.name}</td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                    {(activities && activities.length) === 0 && (
+                                        <>
+                                            <table className="interactive">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {/* Loop over List */}
+                                                    {activities.map(activity => (
+                                                        <tr>
+                                                            <td>{activity.name}</td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                            <CustomProgressBar className='mt-2' />
+                                        </>
+                                    )}
                                 </div>
                             </div>
                             <div className="business-area resources mt-2">
                                 <h2>Resources</h2>
                                 <div className='table-wrapper'>
-                                    <table className="interactive">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>type</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {resources.map((resource, idx) => (
-                                                <tr key={`resource-${idx}`}>
-                                                    <td>{resource.name}</td>
-                                                    <td>{resource.type}</td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                    {(resources && resources.length) === 0 && (
+                                        <>
+                                            <table className="interactive">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>type</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {resources.map((resource, idx) => (
+                                                        <tr key={`resource-${idx}`}>
+                                                            <td>{resource.name}</td>
+                                                            <td>{resource.type}</td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                            <CustomProgressBar className='mt-2' />
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -312,64 +316,74 @@ export default function ProgressBoard(activeBusiness) {
                             <div className="business-area value-proposition">
                                 <h2>Value Proposition</h2>
                                 <div className='table-wrapper'>
-                                    <table className="interactive">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Type</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {valuePropositions.map(valueProposition => (
+                                    {(valuePropositions && valuePropositions.length) === 0 && (
+                                        <table className="interactive">
+                                            <thead>
                                                 <tr>
-                                                    <td>{valueProposition.name}</td>
-                                                    <td>{valueProposition.type}</td>
+                                                    <th>Name</th>
+                                                    <th>Type</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {valuePropositions.map(valueProposition => (
+                                                    <tr>
+                                                        <td>{valueProposition.name}</td>
+                                                        <td>{valueProposition.type}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    )}
+                                    <button className='btn--add'>
+                                        Add Value Proposition
+                                    </button>
                                 </div>
+
                             </div>
                         </div>
                         <div className="col">
                             <div className="business-area customer-relations">
                                 <h2>Customer Relations</h2>
                                 <div className='table-wrapper'>
-                                    <table className="interactive">
-                                        <thead>
-                                            <tr>
-                                                <th>Activity</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {customer_relations.map(customer_relation => (
+                                    {(customerRelations && customerRelations.length) === 0 && (
+                                        <table className="interactive">
+                                            <thead>
                                                 <tr>
-                                                    <td>{customer_relation.activity}</td>
+                                                    <th>Activity</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {customerRelations.map(customerRelation => (
+                                                    <tr>
+                                                        <td>{customerRelation.activity}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    )}
                                 </div>
                             </div>
                             <div className="business-area channels mt-2">
                                 <h2>Channels</h2>
                                 <div className='table-wrapper'>
-                                    <table className="interactive">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>type</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {channels.map(channel => (
+                                    {(channels && channels.length) === 0 && (
+                                        <table className="interactive">
+                                            <thead>
                                                 <tr>
-                                                    <td>{channel.name}</td>
-                                                    <td>{channel.type}</td>
+                                                    <th>Name</th>
+                                                    <th>type</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {channels.map(channel => (
+                                                    <tr>
+                                                        <td>{channel.name}</td>
+                                                        <td>{channel.type}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -377,22 +391,24 @@ export default function ProgressBoard(activeBusiness) {
                             <div className="business-area customers">
                                 <h2>Customers</h2>
                                 <div className='table-wrapper'>
-                                    <table className="interactive">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Age</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {customers.map(customer => (
+                                    {(customers && customers.length) === 0 && (
+                                        <table className="interactive">
+                                            <thead>
                                                 <tr>
-                                                    <td>{customer.name}</td>
-                                                    <td>{customer.age}</td>
+                                                    <th>Name</th>
+                                                    <th>Age</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {customers.map(customer => (
+                                                    <tr>
+                                                        <td>{customer.name}</td>
+                                                        <td>{customer.age}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -402,20 +418,22 @@ export default function ProgressBoard(activeBusiness) {
                             <div className="business-area cost-structure">
                                 <h2>Cost Structure</h2>
                                 <div className='table-wrapper'>
-                                    <table className="interactive">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {partners.map(partner => (
+                                    {(channels && channels.length) === 0 && (
+                                        <table className="interactive">
+                                            <thead>
                                                 <tr>
-                                                    <td>{partner.name}</td>
+                                                    <th>Name</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {partners.map(partner => (
+                                                    <tr>
+                                                        <td>{partner.name}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -423,28 +441,32 @@ export default function ProgressBoard(activeBusiness) {
                             <div className="business-area cost-structure">
                                 <h2>Revenue Stream</h2>
                                 <div className='table-wrapper'>
-                                    <table className="interactive">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {partners.map(partner => (
+                                    {(channels && channels.length) === 0 && (
+                                        <table className="interactive">
+                                            <thead>
                                                 <tr>
-                                                    <td>{partner.name}</td>
+                                                    <th>Name</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {partners.map(partner => (
+                                                    <tr>
+                                                        <td>{partner.name}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    )}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="tab--footer">
-                    <h2 className="mb-2">Creating a Wordpress Application</h2>
-                    <ProgressBar className="progressbar--main" percent={progress} />
+                    <div>
+                        <h2 className="mb-2">Creating a Wordpress Application</h2>
+                        <CustomProgressBar />
+                    </div>
                 </div>
             </div>
         </>

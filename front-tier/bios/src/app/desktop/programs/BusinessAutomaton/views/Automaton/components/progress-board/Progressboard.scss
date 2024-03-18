@@ -9,6 +9,9 @@
             .business-area {
                 flex: 1;
                 overflow: hidden;
+                display: flex;
+                width: 100%;
+                flex-flow: column;
 
                 h2 {
                     margin-bottom: 8px;
@@ -19,28 +22,44 @@
         }
     }
 
-    .tab--footer {
-        .progressbar--main {
-            width: 100%;
-
-            div[class^="ProgressBar__WhiteBar"], div[class^="ProgressBar__Progress"] {
-                width: 100%;
-            }
-            
-            div[class^="ProgressBar__Progress"]{
-                color: unset;
-            }
-        }
-    }
+    .tab--footer {}
 
     >* {}
 
     .table-wrapper {
+        position: relative;
         background-color: white;
         height: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
     }
 
     table {
         width: 100%;
+    }
+
+    .progressbar {
+        width: 100%;
+
+        div[class^="ProgressBar__WhiteBar"],
+        div[class^="ProgressBar__Progress"] {
+            width: 100%;
+        }
+
+        div[class^="ProgressBar__Progress"] {
+            color: unset;
+        }
+    }
+
+    .btn--add{
+        padding: 8px;
+        position: absolute;
+        bottom: 12px;
+        left: 0;
+        width: calc(100% - 24px);
+        margin: 0 auto;
+        left: 50%;
+        transform: translate(-50%, 0);
     }
 }

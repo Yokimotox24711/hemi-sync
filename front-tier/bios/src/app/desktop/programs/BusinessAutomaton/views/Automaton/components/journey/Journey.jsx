@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // Business Life Cycle Stages
 // Existence: Focus on establishing the business, initial products or services, and securing the first customers.
@@ -17,6 +17,43 @@ import React from 'react'
 export default function Journey(activeBusiness) {
     
     var { activeBusiness } = activeBusiness;
+
+    const [businessJourney, Stages] = useState([
+        {
+            name: "Existence",
+            description: "Focus on establishing the business, initial products or services, and securing the first customers.",
+            episodes: {
+                episode1: {
+                    decision: "Choose a business name and mission statement.",
+                    result: "The business name and mission statement are established.",
+                    activities: [
+
+                    ],
+                    milestone: []
+                },
+            }
+        },
+        {
+            name: "Survival",
+            description: "Concentrate on sustaining operations, managing finances, and achieving a stable customer base.",
+            milestones: []
+        },
+        {
+            name: "Success",
+            description: "Expand business operations, diversify products/services, and increase market share.",
+            milestones: []
+        },
+        {
+            name: "Take-off",
+            description: "Scale the business rapidly, seek significant funding, and possibly go public.",
+            milestones: []
+        },
+        {
+            name: "Resource Maturity",
+            description: "Achieve stable growth, innovate within the industry, and explore new markets or acquisitions.",
+            milestones: []
+        }
+    ])
 
     // Go through each business life cycle stage
     // Start with the mission statement
