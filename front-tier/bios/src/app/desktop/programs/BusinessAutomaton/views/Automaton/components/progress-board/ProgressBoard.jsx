@@ -162,6 +162,7 @@ export default function ProgressBoard(activeBusiness) {
         {
             name: "Social Media",
             type: "Online",
+            signal: "🛜",
         },
         {
             name: "Physical Store",
@@ -230,6 +231,11 @@ export default function ProgressBoard(activeBusiness) {
         console.log("Add item");
     }
 
+    const openAreaMenu = (e) => {
+        e.preventDefault();
+        console.log(e.target);
+    }
+
     return (
         <>
             <div className="tab tab--progress-board">
@@ -237,9 +243,12 @@ export default function ProgressBoard(activeBusiness) {
                     <div className="row" style={{ flex: 4 }}>
                         <div className="col">
                             <div className="business-area partners">
-                                <h2>Partners</h2>
+                                <div className='business-area__header'>
+                                    <h2>Partners</h2>
+                                    <button>...</button>
+                                </div>
                                 <div className='table-wrapper'>
-                                    {(partners && partners.length) === 0 && (
+                                    {(typeof partners !== undefined) && (
                                         <table className="interactive">
                                             <thead>
                                                 <tr>
@@ -261,9 +270,14 @@ export default function ProgressBoard(activeBusiness) {
 
                         <div className="col">
                             <div className="business-area activities">
-                                <h2>Activities</h2>
+                                <div className='business-area__header'>
+                                    <h2>Activities</h2>
+                                    <button>
+                                        ...
+                                    </button>
+                                </div>
                                 <div className='table-wrapper'>
-                                    {(activities && activities.length) === 0 && (
+                                    {(typeof activities !== undefined) && (
                                         <>
                                             <table className="interactive">
                                                 <thead>
@@ -286,9 +300,12 @@ export default function ProgressBoard(activeBusiness) {
                                 </div>
                             </div>
                             <div className="business-area resources mt-2">
-                                <h2>Resources</h2>
+                                <div className='business-area__header'>
+                                    <h2>Resources</h2>
+                                    <button>...</button>
+                                </div>
                                 <div className='table-wrapper'>
-                                    {(resources && resources.length) === 0 && (
+                                    {(typeof resources !== undefined) && (
                                         <>
                                             <table className="interactive">
                                                 <thead>
@@ -314,14 +331,18 @@ export default function ProgressBoard(activeBusiness) {
                         </div>
                         <div className="col">
                             <div className="business-area value-proposition">
-                                <h2>Value Proposition</h2>
+                                <div className='business-area__header'>
+                                    <h2>Value Proposition</h2>
+                                    <button>...</button>
+                                </div>
                                 <div className='table-wrapper'>
-                                    {(valuePropositions && valuePropositions.length) === 0 && (
+                                    {(typeof valuePropositions !== undefined) && (
                                         <table className="interactive">
                                             <thead>
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>Type</th>
+                                                    <th>✏️</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -329,23 +350,33 @@ export default function ProgressBoard(activeBusiness) {
                                                     <tr>
                                                         <td>{valueProposition.name}</td>
                                                         <td>{valueProposition.type}</td>
+                                                        <td>
+                                                            <span className='tr__lvl'>1</span>
+                                                            <span className='tr__pencil'>✏️</span>
+                                                        </td>
                                                     </tr>
                                                 ))}
                                             </tbody>
                                         </table>
                                     )}
-                                    <button className='btn--add'>
-                                        Add Value Proposition
-                                    </button>
                                 </div>
 
                             </div>
                         </div>
                         <div className="col">
                             <div className="business-area customer-relations">
-                                <h2>Customer Relations</h2>
+                                <div className='business-area__header'>
+                                    <h2>Customer Relations</h2>
+                                    <div class="business-area__actions">
+                                        <button className="business-area__options" onClick={openAreaMenu}>...</button>
+                                        <div className="business-area__menu">
+                                            <button className="menu-item">Add</button>
+                                            <button className="menu-item">Generate</button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className='table-wrapper'>
-                                    {(customerRelations && customerRelations.length) === 0 && (
+                                    {(typeof customerRelations !== undefined) && (
                                         <table className="interactive">
                                             <thead>
                                                 <tr>
@@ -364,14 +395,20 @@ export default function ProgressBoard(activeBusiness) {
                                 </div>
                             </div>
                             <div className="business-area channels mt-2">
-                                <h2>Channels</h2>
+                                <div className='business-area__header'>
+                                    <h2>Channels</h2>
+                                    <button>
+                                        ...
+                                    </button>
+                                </div>
                                 <div className='table-wrapper'>
-                                    {(channels && channels.length) === 0 && (
+                                    {typeof channels !== "undefined" && (
                                         <table className="interactive">
                                             <thead>
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>type</th>
+                                                    <th>pulse</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -379,6 +416,7 @@ export default function ProgressBoard(activeBusiness) {
                                                     <tr>
                                                         <td>{channel.name}</td>
                                                         <td>{channel.type}</td>
+                                                        <td>🫀</td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -389,9 +427,12 @@ export default function ProgressBoard(activeBusiness) {
                         </div>
                         <div className="col">
                             <div className="business-area customers">
-                                <h2>Customers</h2>
+                                <div className='business-area__header'>
+                                    <h2>Customers</h2>
+                                    <button>...</button>
+                                </div>
                                 <div className='table-wrapper'>
-                                    {(customers && customers.length) === 0 && (
+                                    {(typeof customers !== undefined) && (
                                         <table className="interactive">
                                             <thead>
                                                 <tr>
@@ -416,9 +457,12 @@ export default function ProgressBoard(activeBusiness) {
                     <div className="row mt-2" style={{ flex: 1 }}>
                         <div className="col">
                             <div className="business-area cost-structure">
-                                <h2>Cost Structure</h2>
+                                <div className='business-area__header'>
+                                    <h2>Cost Structure</h2>
+                                    <button>...</button>
+                                </div>
                                 <div className='table-wrapper'>
-                                    {(channels && channels.length) === 0 && (
+                                    {(typeof costStructure !== undefined) && (
                                         <table className="interactive">
                                             <thead>
                                                 <tr>
@@ -438,10 +482,13 @@ export default function ProgressBoard(activeBusiness) {
                             </div>
                         </div>
                         <div className="col">
-                            <div className="business-area cost-structure">
-                                <h2>Revenue Stream</h2>
+                            <div className="business-area revenue-stream">
+                                <div className='business-area__header'>
+                                    <h2>Revenue Stream</h2>
+                                    <button>...</button>
+                                </div>
                                 <div className='table-wrapper'>
-                                    {(channels && channels.length) === 0 && (
+                                    {(typeof revenuestream !== undefined) && (
                                         <table className="interactive">
                                             <thead>
                                                 <tr>
@@ -463,9 +510,9 @@ export default function ProgressBoard(activeBusiness) {
                     </div>
                 </div>
                 <div className="tab--footer">
-                    <div>
-                        <h2 className="mb-2">Creating a Wordpress Application</h2>
+                    <div className='main-action'>
                         <CustomProgressBar />
+                        <h2 className="mt-2">Creating a Wordpress Application</h2>
                     </div>
                 </div>
             </div>

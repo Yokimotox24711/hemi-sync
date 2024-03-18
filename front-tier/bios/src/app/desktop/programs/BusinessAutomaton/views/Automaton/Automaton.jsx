@@ -5,12 +5,14 @@ import Stats from './components/stats/Stats'
 import Journey from './components/journey/Journey'
 import BusinessRoster from '../BusinessRoster/BusinessRoster'
 import './Automaton.scss'
+import Controller from './components/controller/Controller'
 
 export default function Automaton(activeBusiness) {
 
     var {activeBusiness} = activeBusiness;
     return (
         <>
+            {/* <Controller/> */}
             <div className="page page--automaton">
                 <Tabs className="tabs" defaultActiveTab="Progress Board">
                     <Tab title="Journey">

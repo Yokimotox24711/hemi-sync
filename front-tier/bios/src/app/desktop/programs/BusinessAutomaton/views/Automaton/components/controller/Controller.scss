@@ -1,0 +1,27 @@
+.controller-wrapper{
+    margin-top: 8px;
+
+    ul{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(white, 0.1);
+        padding: 8px;
+        list-style: none;
+        gap: 16px;
+    }
+
+    .control{
+        width: 60px;
+        padding: 8px;
+        background-color: rgba(white, 0.1);
+        border-radius: 4px;
+        
+        
+        img{
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+}

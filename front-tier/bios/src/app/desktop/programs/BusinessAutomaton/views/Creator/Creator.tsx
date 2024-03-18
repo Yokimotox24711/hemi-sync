@@ -141,6 +141,7 @@ const Creator = () => {
       }
     );
     var business = await res.json();
+    business = JSON.parse(business);
 
     // Populate Additional Metadata
     business["uuid"] = uuidv4();
