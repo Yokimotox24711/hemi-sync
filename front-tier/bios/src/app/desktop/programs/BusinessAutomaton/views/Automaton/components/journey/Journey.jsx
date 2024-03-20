@@ -16,6 +16,7 @@ import React, { useState } from 'react'
 
 export default function Journey(activeBusiness) {
     
+    
     var { activeBusiness } = activeBusiness;
 
     const [businessJourney, Stages] = useState([
@@ -54,12 +55,6 @@ export default function Journey(activeBusiness) {
             milestones: []
         }
     ])
-
-    // Go through each business life cycle stage
-    // Start with the mission statement
-    // for a stage generate 5 episodes
-    // each episode has a decision and a result
-    console.log(activeBusiness);
 
     return (
         <>

@@ -29,7 +29,11 @@ export default function Nav({ setActiveView }) {
                     </ul>
                 </nav>
                 <div className="display">
-                    <h3>Tesla Inc.</h3>
+                    <h3>Fitality</h3>
+                    <h5>launch</h5>
+                </div>
+                <div>
+                    <div></div>
                 </div>
                 <nav className={`menu--top  ${menuRightOpen && "open"}`}>
                     <div className="main-buttons">

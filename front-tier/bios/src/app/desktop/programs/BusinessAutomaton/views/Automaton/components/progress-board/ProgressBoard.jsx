@@ -40,46 +40,49 @@ export default function ProgressBoard(activeBusiness) {
 
     )
 
-    var partners = [
+    const [partners, setPartners] = useState([
         {
-            name: "Microsoft"
+            name: "Thomas"
         },
         {
-            name: "Google"
+            name: "Robbe"
         },
-        {
-            name: "OpenAI"
-        },
-        {
-            name: "NVIDIA"
-        }
-    ]
+        // {
+        //     name: "Google"
+        // },
+        // {
+        //     name: "OpenAI"
+        // },
+        // {
+        //     name: "NVIDIA"
+        // }
+    ])
 
     var activities = [
         {
             name: "Create Virtual Network",
             time_in_hours: "0.5"
         },
-        {
-            name: "Setup SQL Server",
-            time_in_hours: "0.5"
-        },
-        {
-            name: "Setup Wordpress",
-            time_in_hours: "1"
-        },
-        {
-            name: "Buy Domainname",
-            time_in_hours: "0.2"
-        },
-        {
-            name: "Setup SSL Certificate",
-            time_in_hours: "0.2"
-        },
-        {
-            name: "Setup CDN",
-            time_in_hours: "0.5"
-        }
+        // {
+        //     name: "Setup SQL Server",
+        //     time_in_hours: "0.5"
+        // },
+        // {
+        //     name: "Setup Wordpress",
+        //     time_in_hours: "1"
+        // },
+        // {
+        //     name: "Buy Domainname",
+        //     time_in_hours: "0.2"
+        // },
+        // {
+        //     name: "Setup SSL Certificate",
+        //     time_in_hours: "0.2"
+        // },
+        // {
+        //     name: "Setup CDN",
+        //     time_in_hours: "0.5"
+        // }
     ]
 
     var valuePropositions = [
@@ -87,30 +90,30 @@ export default function ProgressBoard(activeBusiness) {
             name: "Website",
             type: "Product",
         },
-        {
-            name: "Blog",
-            type: "Product",
-        },
-        {
-            name: "E-commerce",
-            type: "Product",
-        },
-        {
-            name: "Cloud Integration",
-            type: "Service",
-        },
-        {
-            name: "Analytics Report",
-            type: "Product",
-        },
-        {
-            name: "Go To Market Plan",
-            type: "Product",
-        },
-        {
-            name: "SEO Optimization",
-            type: "Service",
-        }
+        // {
+        //     name: "Blog",
+        //     type: "Product",
+        // },
+        // {
+        //     name: "E-commerce",
+        //     type: "Product",
+        // },
+        // {
+        //     name: "Cloud Integration",
+        //     type: "Service",
+        // },
+        // {
+        //     name: "Analytics Report",
+        //     type: "Product",
+        // },
+        // {
+        //     name: "Go To Market Plan",
+        //     type: "Product",
+        // },
+        // {
+        //     name: "SEO Optimization",
+        //     type: "Service",
+        // }
     ]
 
     var resources = [
@@ -119,111 +122,132 @@ export default function ProgressBoard(activeBusiness) {
             type: "Infrastructure",
             cost_per_hour: 0.0002
         },
-        {
-            name: "SQL Server",
-            type: "Infrastructure",
-            seller: "Azure",
-            cost_per_hour: 0.00001
-        },
-        {
-            name: "Web Server",
-            type: "Infrastructure",
-            seller: "Azure",
-            cost_per_hour: 0.0001
-        },
-        {
-            name: "Virtual Machine",
-            type: "Infrastructure",
-            seller: "Azure",
-            cost_per_hour: 0.0003,
-        },
-        {
-            name: "Kubernetes cluster",
-            type: "Infrastructure",
-            seller: "Azure",
-            cost_per_hour: 0.0005,
-        },
-        {
-            name: "Software Developer",
-            type: "Employee",
-            cost_per_hour: 0.0005,
-        }
+        // {
+        //     name: "SQL Server",
+        //     type: "Infrastructure",
+        //     seller: "Azure",
+        //     cost_per_hour: 0.00001
+        // },
+        // {
+        //     name: "Web Server",
+        //     type: "Infrastructure",
+        //     seller: "Azure",
+        //     cost_per_hour: 0.0001
+        // },
+        // {
+        //     name: "Virtual Machine",
+        //     type: "Infrastructure",
+        //     seller: "Azure",
+        //     cost_per_hour: 0.0003,
+        // },
+        // {
+        //     name: "Kubernetes cluster",
+        //     type: "Infrastructure",
+        //     seller: "Azure",
+        //     cost_per_hour: 0.0005,
+        // },
+        // {
+        //     name: "Software Developer",
+        //     type: "Employee",
+        //     cost_per_hour: 0.0005,
+        // }
     ]
 
     var channels = [
-        {
-            name: "Web",
-            type: "Online",
-        },
-        {
-            name: "Mobile",
-            type: "Online",
-        },
-        {
-            name: "Social Media",
-            type: "Online",
-            signal: "🛜",
-        },
-        {
-            name: "Physical Store",
-            type: "Offline",
-        },
-        {
-            name: "Sales Team",
-            type: "Offline",
-        }
+        // {
+        //     name: "Web",
+        //     type: "Online",
+        // },
+        // {
+        //     name: "Mobile",
+        //     type: "Online",
+        // },
+        // {
+        //     name: "Social Media",
+        //     type: "Online",
+        //     signal: "🛜",
+        // },
+        // {
+        //     name: "Physical Store",
+        //     type: "Offline",
+        // },
+        // {
+        //     name: "Sales Team",
+        //     type: "Offline",
+        // }
     ]
 
     var customers = [
         {
-            name: "Jimmy McMillan",
+            name: "Rosalie",
+            age: 25,
+            role: "Business Owner"
+        },
+        {
+            name: "Lieselotte",
             age: 25,
         },
         {
-            name: "Franklin D. Roosevelt",
+            name: "Rob",
             age: 25,
         },
-        {
-            name: "John F. Kennedy",
-            age: 59,
-        },
-        {
-            name: "James Madison",
-            age: 40,
-        },
-        {
-            name: "Bill Gates",
-            age: 65,
-        },
-        {
-            name: "Steve Jobs",
-            age: 56,
-        },
-        {
-            name: "Elon Musk",
-            age: 49,
-        },
-        {
-            name: "Jeff Bezos",
-            age: 57,
-        }
+        // {
+        //     name: "John F. Kennedy",
+        //     age: 59,
+        // },
+        // {
+        //     name: "James Madison",
+        //     age: 40,
+        // },
+        // {
+        //     name: "Bill Gates",
+        //     age: 65,
+        // },
+        // {
+        //     name: "Steve Jobs",
+        //     age: 56,
+        // },
+        // {
+        //     name: "Elon Musk",
+        //     age: 49,
+        // },
+        // {
+        //     name: "Jeff Bezos",
+        //     age: 57,
+        // }
     ]
 
     var customerRelations = [
         {
-            activity: "Helpdesk Call"
+            activity: "Office Visit"
         },
-        {
-            activity: "Email"
-        },
-        {
-            activity: "Chat"
-        },
-        {
-            activity: "Social Media"
-        },
-        {
-            activity: "Feedback Form"
+        // {
+        //     activity: "Helpdesk Call"
+        // },
+        // {
+        //     activity: "Email"
+        // },
+        // {
+        //     activity: "Chat"
+        // },
+        // {
+        //     activity: "Social Media"
+        // },
+        // {
+        //     activity: "Feedback Form"
+        // }
+    ]
+
+    var costStructure = [
+        {   
+            name: "Virtual Network",
+            cost_per_hour: 0.002,
+        }
+    ]
+    var revenueStream = [
+        {   
+            name: "Virtual Network",
+            cost_per_hour: 0.002,
         }
     ]
 
@@ -256,7 +280,7 @@ export default function ProgressBoard(activeBusiness) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {partners.map(partner => (
+                                                {partners && partners.map(partner => (
                                                     <tr>
                                                         <td>{partner.name}</td>
                                                     </tr>
@@ -470,9 +494,9 @@ export default function ProgressBoard(activeBusiness) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {partners.map(partner => (
+                                                {costStructure.map(costStructure => (
                                                     <tr>
-                                                        <td>{partner.name}</td>
+                                                        <td>{costStructure.name}</td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -496,9 +520,9 @@ export default function ProgressBoard(activeBusiness) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {partners.map(partner => (
+                                                {revenuestream.map(revenue => (
                                                     <tr>
-                                                        <td>{partner.name}</td>
+                                                        <td>{revenue.name}</td>
                                                     </tr>
                                                 ))}
                                             </tbody>

@@ -7,17 +7,18 @@ export default function CustomProgressBar(time_in_hours, setComplete) {
   const [progress, setProgress] = useState(0);
   
   var time_in_hours = getRandomBetween(0, 10);
-  var speed = 100;
+  var speed = 10;
 
-  useEffect(() => {
-      setTimeout(() => {
-        if (progress === 100) {
-          setComplete();  
-        } else{
-          setProgress(progress + 1);
-        }
-      }, time_in_hours * speed);
-  });
+  // useEffect(() => {
+  //     setTimeout(() => {
+  //       if (progress === 100) {
+  //         // setComplete();  
+  //         setProgress(0);
+  //       } else{
+  //         setProgress(progress + 1);
+  //       }
+  //     }, time_in_hours * speed);
+  // });
   
   return (
     <>
