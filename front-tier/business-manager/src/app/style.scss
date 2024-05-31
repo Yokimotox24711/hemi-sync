@@ -1,0 +1,143 @@
+.business-model-canvas {
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    height: calc(100vh - 64px);
+
+    table {
+        width: 100%;
+
+        th, td {
+            text-align: left;
+            white-space: nowrap;
+        }
+    }
+
+    .item{
+        background: rgba(white, 0.02);
+        border-radius: 5px;
+        margin-bottom: 5px;
+        &:hover{
+            background: rgba(white, 0.1);
+        }
+    }
+
+    .row.first {
+        padding-bottom: 4px;
+        margin-bottom: 0;
+        height: 75%;
+
+        >* {
+            height: 100%;
+        }
+    }
+
+    .row.second {
+        height: 25%;
+
+        >* {
+            padding-top: 0;
+            height: 100%;
+        }
+    }
+
+    .custom-content-table {
+        height: 100%;
+        overflow: auto;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .business-area {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            width: 100%;
+            flex-flow: column;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 8px;
+            border-radius: 10px;
+
+            &__header {
+                margin-bottom: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+                padding-bottom: 8px;
+                border-bottom: solid 1px rgba(white, 0.1);
+
+                h2 {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    width: 100%;
+                    color: greenyellow;
+                }
+
+                button {
+                    box-shadow: none;
+                    min-width: unset;
+                }
+            }
+
+            &__body {
+                height: 100%;
+                overflow: auto;
+            }
+
+            &__options {}
+
+            &__actions {
+                display: flex;
+                flex-direction: row-reverse;
+                position: relative;
+
+                &:hover {
+                    .business-area__menu {
+                        display: flex;
+                    }
+                }
+
+                button:hover {
+                    cursor: pointer;
+                    background-color: aquamarine;
+                }
+            }
+
+            &__menu {
+                position: absolute;
+                left: 0;
+                transform: translate(-100%, 0);
+                display: none;
+            }
+
+            // &.value-proposition {
+            //     text-align: center;
+            // }
+
+            // &.revenue-stream {
+            //     text-align: right;
+            // }
+
+            // &.customers {
+            //     text-align: right;
+            // }
+
+            // &.customer-relations {
+            //     text-align: right;
+            // }
+
+            // &.channels {
+            //     text-align: right;
+            // }
+
+        }
+
+    }
+}
