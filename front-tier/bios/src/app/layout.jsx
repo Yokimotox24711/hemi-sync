@@ -15,9 +15,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider session={session}>
-          {/* <FXProvider> */}
             {!session ? <Login /> : <> {children} </>}
-          {/* </FXProvider> */}
         </SessionProvider>
       </body>
     </html>
