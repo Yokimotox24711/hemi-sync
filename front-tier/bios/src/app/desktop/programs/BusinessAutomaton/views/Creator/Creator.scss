@@ -1,0 +1,24 @@
+.page--creator {
+    .business-info__wrapper {
+        .field-row {
+            display: flex;
+            flex-flow: column;
+            align-items: flex-start;
+            width: 100%;
+
+            label{
+                margin-bottom: 4px;
+            }
+
+            input{
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    }
+
+    .page--footer{
+        display: flex;
+        justify-content: flex-end;
+    }
+}
